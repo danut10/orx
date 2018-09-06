@@ -1,0 +1,45 @@
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://maven.apache.org/POM/4.0.0 
+		http://maven.apache.org/maven-v4_0_0.xsd">
+		
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>orx-common</artifactId>
+	
+	<parent>
+		<groupId>ro.jdmx.orx</groupId>
+		<artifactId>orx</artifactId>
+		<version>0.1</version>
+		<relativePath>../orx/pom.xml</relativePath>		
+	</parent>
+
+	<dependencies>
+
+		<!-- commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
+		</dependency>	
+		
+		<!-- commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+		
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+				
+    </dependencies>
+
+
+</project>
