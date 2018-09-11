@@ -1,0 +1,10 @@
+body {
+	font-family: sans-serif, Verdana, Tahoma,"Trebuchet MS";
+	font-size: 11pt;
+	background-color: #eeeeee;
+	color: red;
+}
+
+.red {
+	color: red;
+}

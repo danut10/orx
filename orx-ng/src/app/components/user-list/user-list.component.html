@@ -1,0 +1,22 @@
+<div>
+
+	<h1>
+		User list
+	</h1>
+	
+	<br>
+	
+	<table class="tblGrid" style="width: 300px;">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+		</tr>
+		
+		
+		<tr *ngFor="let record of recordList" (click)="select(record)">
+			<td><a href="#">{{record.id}}</a></td>
+			<td><a href="#">{{record.name}}</a></td>
+		</tr>
+	</table>
+	
+</div>
