@@ -18,7 +18,7 @@
 	
 	<dependencies>
 
-		<!-- nhp-app -->
+		<!-- orx-app -->
 		<dependency>
 			<groupId>ro.jdmx.orx</groupId>
 			<artifactId>orx-app</artifactId>
