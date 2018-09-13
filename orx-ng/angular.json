@@ -3,13 +3,17 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "orx-ng": {
-      "root": "",
-      "sourceRoot": "src",
-      "projectType": "application",
-      "prefix": "app",
-      "schematics": {},
-      "architect": {
+  
+  	/*
+  	 * this is my project
+  	 */
+	"orx-ng": {
+		"root": "",
+		"sourceRoot": "src",
+		"projectType": "application",
+		"prefix": "app",
+		"schematics": {},
+		"architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -25,7 +29,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            	"node_modules/jquery/dist/jquery.min.js",
+				"node_modules/bootstrap/dist/js/bootstrap.min.js"            
           },
           "configurations": {
             "production": {
@@ -94,7 +100,8 @@
           }
         }
       }
-    },
+	},
+    
     "orx-ng-e2e": {
       "root": "e2e/",
       "projectType": "application",
