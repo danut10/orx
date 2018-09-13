@@ -29,7 +29,7 @@
 	
   	<jaxrs:server id="rsAll" address="/rs">
   		<jaxrs:serviceBeans>
-			<bean class="ro.jdmx.orx.web.rest.RsGeneric"/>
+			<bean class="ro.jdmx.orx.web.api.rest.RsGeneric"/>
 			<!--  
 			<bean class="ro.kepler.kepres.ws.rest.RsAplicatie"/>
 			<bean class="ro.kepler.kepres.ws.rest.RsClient"/>
@@ -40,9 +40,9 @@
 		</jaxrs:providers>
   	</jaxrs:server>
   	
-	<jaxws:server id="ws1" serviceClass="ro.jdmx.orx.web.soap.sei.Ws1" address="/ws/ws1">
+	<jaxws:server id="wsGeneric" serviceClass="ro.jdmx.orx.web.api.soap.sei.WsGeneric" address="/ws/wsGeneric">
 		<jaxws:serviceBean>
-			<bean class="ro.jdmx.orx.web.soap.impl.Ws1Impl"/>
+			<bean class="ro.jdmx.orx.web.api.soap.impl.WsGenericImpl"/>
 		</jaxws:serviceBean>
 	</jaxws:server>
 	
