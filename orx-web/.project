@@ -51,5 +51,10 @@
 			<type>2</type>
 			<locationURI>PROJECT_LOC/src/main/webapp/WEB-INF</locationURI>
 		</link>
+		<link>
+			<name>webapp</name>
+			<type>2</type>
+			<locationURI>PROJECT_LOC/src/main/webapp</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>
