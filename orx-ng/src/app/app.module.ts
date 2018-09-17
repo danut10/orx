@@ -6,7 +6,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { UserListComponent } from './components/user-list/user-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   
@@ -26,4 +26,6 @@ import { AppRoutingModule } from './/app-routing.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+	//
+}

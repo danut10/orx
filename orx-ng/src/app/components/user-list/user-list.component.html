@@ -10,12 +10,16 @@
 		<tr>
 			<th>ID</th>
 			<th>Name</th>
+			<th></th>
 		</tr>
 		
 		
 		<tr *ngFor="let record of recordList" (click)="select(record)">
-			<td><a href="#">{{record.id}}</a></td>
-			<td><a href="#">{{record.name}}</a></td>
+			<td>{{record.id}}</td>
+			<td>{{record.name}}</td>
+			<td>
+				<a [routerLink]="['/user-details', record.id]">GO</a>
+			</td>
 		</tr>
 	</table>
 	

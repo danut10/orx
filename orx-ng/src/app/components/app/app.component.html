@@ -4,7 +4,14 @@
 	
 	<!-- content -->
 	<div class="row">
-		<div class="col-sm-2 border"> menu right</div>
+		<div class="col-sm-2 border"> 
+			<nav>
+				<a routerLink="/user-list">User list</a>
+			</nav>
+			<nav>
+				<a routerLink="/user-details/1">User details</a>
+			</nav>
+		</div>
 		<div class="col-sm-10 border"> 
 			<p class="red">Page title - {{ title }} </p>
 			<router-outlet></router-outlet>
