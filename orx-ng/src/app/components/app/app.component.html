@@ -1,21 +1,18 @@
 
-<div style="text-align:center; border: solid 1px silver; padding: 50px; ">
-    <p class="red">Page title - {{ title }} </p>
-    <user-list></user-list>
-    <br>
-    <user-details></user-details>
-</div>
-
-<div class="container">
-  <div class="jumbotron">
-    <h1>Welcome</h1>
-    <h2>Angular and Bootstrap Demo</h2>
-  </div>
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading">Status</div>
-    <div class="panel-body">
-      <h3>{{title}}</h3>
-    </div>
-  </div>
+<div class="container" style="border: 1px solid silver; background-color: white; margin-top: 7px; border-radius: 4px;" >
+	<app-header></app-header>
+	
+	<!-- content -->
+	<div class="row">
+		<div class="col-sm-2 border"> menu right</div>
+		<div class="col-sm-10 border"> 
+			<p class="red">Page title - {{ title }} </p>
+			<router-outlet></router-outlet>
+		</div>
+	</div>	
+	
+	<div>
+		<app-footer></app-footer>
+	</div>
+	
 </div>
