@@ -4,9 +4,6 @@
   "newProjectRoot": "projects",
   "projects": {
   
-  	/*
-  	 * this is my project
-  	 */
 	"orx-ng": {
 		"root": "",
 		"sourceRoot": "src",
@@ -31,7 +28,8 @@
             ],
             "scripts": [
             	"node_modules/jquery/dist/jquery.min.js",
-				"node_modules/bootstrap/dist/js/bootstrap.min.js"            
+                "node_modules/bootstrap/dist/js/bootstrap.min.js"  
+            ]          
           },
           "configurations": {
             "production": {
