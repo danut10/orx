@@ -5,13 +5,88 @@
 	<!-- content -->
 	<div class="row">
 		<div class="col-sm-2 border">
-			 
+
+			<nav class="nav flex-column">
+			  <a class="nav-link active" href="#">Active</a>
+			  <a class="nav-link" href="#">Link</a>
+			  <a class="nav-link" href="#">Link</a>
+			  <a class="nav-link disabled" href="#">Disabled</a>
+			</nav>
+			
+			<ul class="metismenu" id="menu">
+				<li>
+					<a href="#" class="has-arrow" aria-expanded="false">Admin</a>
+					<ul>
+						<li>Users</li>
+						<li>Roles</li>
+						<li>Sessions</li>
+						<li>Audit</li>
+					</ul>
+				</li>
+				<li>
+					Config
+					<ul>
+						<li>Robots</li>
+						<li>Jobs</li>
+						<li>Job executions</li>
+					</ul>
+				</li>
+				<li>
+					Help
+					<ul>
+						<li>User manual</li>
+						<li>API specs</li>
+						<li>Support</li>
+					</ul>
+				</li>
+				
+			</ul>			 
+			
 			<nav>
 				<a routerLink="/user-list">User list</a>
 				<br>
 				<a [routerLink]="[{ outlets: { primary1: ['user-list'] } }]">User lissssst</a>
 				<br> 
 				<a routerLink="/user-details/1">User details</a>
+			</nav>
+		
+			<nav class="navbar navbar-dark bg-dark mb-5">
+			  <div class="navbar-expand mr-auto">
+			    <div class="navbar-nav">
+			      <a class="nav-item nav-link active" href="#">Home</a>
+			      <a class="nav-item nav-link" href="#">About</a>
+			      <a class="nav-item nav-link" href="#">Contact</a>
+			    </div>
+			  </div>
+			  <div class="navbar-expand ml-auto navbar-nav">
+			    <div class="navbar-nav">
+			      <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
+			        <i class="fa fa-github"></i>
+			      </a>
+			      <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
+			        <i class="fa fa-twitter"></i>
+			      </a>
+			      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
+			        <i class="fa fa-medium"></i>
+			      </a>
+			    </div>
+			  </div>
+			</nav>		
+		
+			<nav>
+			    <ul >
+					<li><a href="#">Link 1</a></li>
+					<li>
+						<a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Link 2 (toggle)</a>
+						<ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
+							<li><a href="#">Link 2.1</a></li>
+							<li><a href="#">Link 2.2</a></li>
+							<li><a href="#">Link 2.3</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Link 3</a></li>
+					<li><a href="#">Link 4</a></li>
+			  </ul>
 			</nav>
 		</div>
 		<div class="col-sm-10 border"> 
