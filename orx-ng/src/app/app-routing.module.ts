@@ -5,8 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './components/user-list/user-list.component';
 
 const routes: Routes = [
-	{ path: 'user-list', component: UserListComponent }, 
-	{ path: 'user-details/:id', component: UserDetailsComponent }
+	{ outlet: 'primary1', path: 'user-list', component: UserListComponent }, 
+	{ outlet: 'primary1', path: 'user-details/:id', component: UserDetailsComponent }
 ];	
 
 @NgModule({
