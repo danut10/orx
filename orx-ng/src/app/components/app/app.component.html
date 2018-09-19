@@ -1,102 +1,94 @@
-
-<div class="container" style="border: 1px solid silver; background-color: white; margin-top: 7px; border-radius: 4px;" >
-	<app-header></app-header>
+<style>
+	.fa
+	{
+		margin-right: 5px;
+	}
 	
-	<!-- content -->
-	<div class="row">
-		<div class="col-sm-2 border">
+	li .a 
+	{
+		margin-right: 10px;
+	}
+</style>
 
-			<nav class="nav flex-column">
-			  <a class="nav-link active" href="#">Active</a>
-			  <a class="nav-link" href="#">Link</a>
-			  <a class="nav-link" href="#">Link</a>
-			  <a class="nav-link disabled" href="#">Disabled</a>
-			</nav>
+<div class="container">
+
+	<app-header></app-header>
+
+	<nav class="navbar navbar-light bg-light navbar-expand-lg">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" 
+			data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		
+			<ul class="navbar-nav mr-auto">
 			
-			<ul class="metismenu" id="menu">
-				<li>
-					<a href="#" class="has-arrow" aria-expanded="false">Admin</a>
-					<ul>
-						<li>Users</li>
-						<li>Roles</li>
-						<li>Sessions</li>
-						<li>Audit</li>
-					</ul>
+				<li class="nav-item active">
+					<a class="nav-link" href="#"><i class="fa fa-user"></i> My account</a>
 				</li>
-				<li>
-					Config
-					<ul>
-						<li>Robots</li>
-						<li>Jobs</li>
-						<li>Job executions</li>
-					</ul>
+				<li class="nav-item">
+					<a class="nav-link" href="#"><i class="fa fa-cog"></i> Config</a>
 				</li>
-				<li>
-					Help
-					<ul>
-						<li>User manual</li>
-						<li>API specs</li>
-						<li>Support</li>
-					</ul>
+				<li class="nav-item">
+					<a class="nav-link" href="#"><i class="fa fa-line-chart"></i> Inspect</a>
 				</li>
 				
-			</ul>			 
+				<!--  
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+						role="button" data-toggle="dropdown" 
+						aria-haspopup="true" aria-expanded="false">
+	          			Dropdown
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Item 1</a>
+						<a class="dropdown-item" href="#">Item 2</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Item 3</a>
+					</div>
+				</li>
+				-->
+				
+			</ul>
+	
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-wrench"></i> Admin</a></li>		
+				<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-info-circle"></i>Help</a></li>		
+			</ul>
 			
-			<nav>
-				<a routerLink="/user-list">User list</a>
-				<br>
-				<a [routerLink]="[{ outlets: { primary1: ['user-list'] } }]">User lissssst</a>
-				<br> 
-				<a routerLink="/user-details/1">User details</a>
-			</nav>
-		
-			<nav class="navbar navbar-dark bg-dark mb-5">
-			  <div class="navbar-expand mr-auto">
-			    <div class="navbar-nav">
-			      <a class="nav-item nav-link active" href="#">Home</a>
-			      <a class="nav-item nav-link" href="#">About</a>
-			      <a class="nav-item nav-link" href="#">Contact</a>
-			    </div>
-			  </div>
-			  <div class="navbar-expand ml-auto navbar-nav">
-			    <div class="navbar-nav">
-			      <a class="nav-item nav-link" href="https://github.com/beeman" target="_blank">
-			        <i class="fa fa-github"></i>
-			      </a>
-			      <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
-			        <i class="fa fa-twitter"></i>
-			      </a>
-			      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
-			        <i class="fa fa-medium"></i>
-			      </a>
-			    </div>
-			  </div>
-			</nav>		
-		
-			<nav>
-			    <ul >
-					<li><a href="#">Link 1</a></li>
-					<li>
-						<a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Link 2 (toggle)</a>
-						<ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
-							<li><a href="#">Link 2.1</a></li>
-							<li><a href="#">Link 2.2</a></li>
-							<li><a href="#">Link 2.3</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Link 3</a></li>
-					<li><a href="#">Link 4</a></li>
-			  </ul>
+		</div>
+	</nav>
+
+</div>
+
+<!--  
+<div class="container" style="border: 1px solid silver; background-color: white; margin-top: 7px; border-radius: 4px; padding: 10px; width: 1600px;" >
+	
+	<br><br>	
+
+	<div class="row">
+		<div class="col-sm-2 border">
+			<nav class="nav flex-column">
+			  <a class="nav-link active" routerLink="/user-list">User list</a>
+			  <a class="nav-link" [routerLink]="[{ outlets: { primary1: ['user-list'] } }]">User list (outlet)</a>
+			  <a class="nav-link" href="#">User details</a>
+			  <a class="nav-link disabled" href="#">Disabled</a>
 			</nav>
 		</div>
+
 		<div class="col-sm-10 border"> 
 			<p class="red">Page title - {{ title }} </p>
 			<router-outlet name="primary1"></router-outlet>
 		</div>
-	</div>	
+	</div>
+	
+	<br><br>	
 	
 	<div>
 		<app-footer></app-footer>
 	</div>
 	
 </div>
+-->
