@@ -1,12 +1,88 @@
+<style>
+	.fa
+	{
+		margin-right: 7px;
+	}
+	
+	li .a 
+	{
+		margin-right: 10px;
+	}
+</style>
+
 <div style="padding: 5px; border: solid 0px silver;">
 	<div style="font-size: 21pt;">
 		<img src="assets/img/logo.png" style="width: 25px;">
 		&nbsp;
 		Open Robotix
-	</div>
-	<div class="ml-auto">
+		<!--  
 		<img src="assets/img/user.png" style="width: 32px;">
-		Vasile Neagu		
+		Vasile Neagu
+		-->		
 	</div>
-	
 </div>
+
+<nav class="navbar navbar-light bg-light navbar-expand-lg">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+		aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	
+		<ul class="navbar-nav mr-auto">
+		
+			<li class="nav-item active">
+				<a class="nav-link" href="#"><i class="fa fa-user"></i>My account</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#"><i class="fa fa-cog"></i>Config</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#"><i class="fa fa-line-chart"></i>Inspect</a>
+			</li>
+			
+			<!--  
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+					role="button" data-toggle="dropdown" 
+					aria-haspopup="true" aria-expanded="false">
+          			Dropdown
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Item 1</a>
+					<a class="dropdown-item" href="#">Item 2</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Item 3</a>
+				</div>
+			</li>
+			
+ 			<a class="nav-link active" routerLink="/user-list">User list</a>
+			<a class="nav-link" [routerLink]="[{ outlets: { primary1: ['user-list'] } }]">User list (outlet)</a>
+			<a class="nav-link" href="#">User details</a>
+			<a class="nav-link disabled" href="#">Disabled</a>			
+			-->
+			
+		</ul>
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navAdmin" 
+					role="button" data-toggle="dropdown" 
+					aria-haspopup="true" aria-expanded="false">
+          			<i class="fa fa-wrench"></i>Admin
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navAdmin">
+					<a class="dropdown-item" href="#"><i class="fa fa-users"></i>Users</a>
+					<a class="dropdown-item" href="#"><i class="fa fa-key"></i>Roles</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Sessions</a>
+					<a class="dropdown-item" href="#">Audit</a>
+				</div>
+			</li>		
+			<li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-info-circle"></i>Help</a></li>		
+		</ul>
+		
+	</div>
+</nav>

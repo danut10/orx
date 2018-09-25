@@ -7,6 +7,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ContentComponent } from './components/content/content.component';
+import { RoleListComponent } from './components/role-list/role-list.component';
 
 @NgModule({
   
@@ -15,7 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
     UserDetailsComponent,
     UserListComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ContentComponent,
+    RoleListComponent
   ],
   
   imports: [
