@@ -1,12 +1,15 @@
-import { UserDetailsComponent } from "./components/user-details/user-details.component";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { UserListComponent } from './components/user-list/user-list.component';
+import { RoleListComponent } from './components/role-list/role-list.component';
+
 
 const routes: Routes = [
-	{ outlet: 'primary1', path: 'user-list', component: UserListComponent }, 
-	{ outlet: 'primary1', path: 'user-details/:id', component: UserDetailsComponent }
+	  { path: 'user-list', component: UserListComponent }
+	, { path: 'role-list', component: RoleListComponent } 
+	// { outlet: 'primary1', path: 'user-list', component: UserListComponent }, 
+	//{ outlet: 'primary1', path: 'user-details/:id', component: UserDetailsComponent }
 ];	
 
 @NgModule({

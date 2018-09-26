@@ -1,6 +1,5 @@
-div
-{
-	border: solid 1px silver; 
+div {
+	// border: solid 1px silver; 
 	text-align: left; 
 	padding: 10px; 
 	font-family: sans-serif; 
@@ -8,16 +7,14 @@ div
 	
 }
 
-table
-{
+table {
 	width: 100%;	
 	border-collapse: collapse;
 	font-family: sans-serif;	
 	margin-bottom: 15px; 
 } 
 
-td
-{
+td {
 	border-bottom: 1px solid silver;	
 	padding-top: 4px;
 	padding-bottom: 0px;
@@ -25,10 +22,13 @@ td
 	height: 32px;
 } 
 
-th
-{
+th {
 	border-bottom: 3px double silver;
 	font-weight: normal;
 	padding-bottom: 5px;
 	padding-left: 3px;	
 } 
+
+header {
+	font-size: 14pt;	
+}
