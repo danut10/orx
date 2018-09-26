@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User, userList } from '../../domain/user';
+
+import { User } from '../../domain/user';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -9,13 +11,21 @@ import { User, userList } from '../../domain/user';
 })
 export class UserListComponent implements OnInit {
 
-	constructor() { }
+	currentRecord: User;
+	recordList: User[];	
+
+	constructor(
+		private userService: UserService
+		) { }
 
 	ngOnInit() {
+		this.userService.readList()
+			.subscribe(list => this.recordList = list);
 	}
 	
-	currentRecord: User;
-	recordList = userList;	
+	/*
+	 * Custom methods
+	 */
 
 	select(user: User): void {
 		this.currentRecord = user;

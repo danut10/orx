@@ -45,16 +45,14 @@
 	</servlet-mapping> 
 	
 	<!-- CORS -->
-	<!--  
 	<filter>
 		<filter-name>CORS</filter-name>
-		<filter-class>ro.kepler.kepres.ws.core.CorsFilter</filter-class>
+		<filter-class>ro.jdmx.orx.web.api.core.CorsFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>CORS</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/api/*</url-pattern>
 	</filter-mapping>
-	-->
 	
 	<!-- SiteMesh -->
 	<!--  
