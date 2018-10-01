@@ -1,0 +1,33 @@
+div {
+	/* border: solid 1px silver; */
+	text-align: left; 
+	padding: 10px; 
+	font-family: sans-serif; 
+	font-size: 11pt;
+}
+
+table {
+	width: 100%;	
+	border-collapse: collapse;
+	font-family: sans-serif;	
+	margin-bottom: 15px; 
+} 
+
+td {
+	border-bottom: 1px solid silver;	
+	padding-top: 4px;
+	padding-bottom: 0px;
+	padding-left: 3px;	
+	height: 32px;
+} 
+
+th {
+	border-bottom: 3px double silver;
+	font-weight: normal;
+	padding-bottom: 5px;
+	padding-left: 3px;	
+} 
+
+header {
+	font-size: 14pt;	
+}

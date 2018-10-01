@@ -8,20 +8,18 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   
   declarations: [
     AppComponent,
-    UserDetailsComponent,
-    UserListComponent,
     HeaderComponent,
     FooterComponent,
     ContentComponent,
-    RoleListComponent
+    RoleListComponent,
+    UserComponent
   ],
   
   imports: [

@@ -1,0 +1,50 @@
+<div>
+	<header>
+		{{screenTitle}} - {{screenMode}}
+	</header>
+</div>
+
+<!-- Toolbar -->
+<div>
+	<button type="button">Add</button>
+	<button type="button">Edit</button>
+	<button type="button">Delete</button>
+	<button type="button">Save</button>
+	<button type="button">Cancel</button>
+</div>
+
+<div *ngIf="(screenMode == 'list')">
+	<table class="tblGrid" style="width: 600px;">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th></th>
+		</tr>
+		
+		
+		<tr *ngFor="let record of recordList" (click)="select(record)">
+			<td>{{record.id}}</td>
+			<td>{{record.name}}</td>
+			<td>{{record.emailAddress}}</td>
+			<td>
+				<a [routerLink]="['/users/view', record.id]">GO</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div *ngIf="screenMode == 'view' || screenMode == 'edit'">
+	<table>
+		<tr>
+			<td>ID</td>
+			<td><input type="text" value="??"> </td>
+		</tr>
+		
+		<tr>
+			<td>Name</td>
+			<td><input type="text" value="??"> </td>
+		</tr>
+		
+	</table>
+</div>

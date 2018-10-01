@@ -2,20 +2,19 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { User } from '../domain/user';
+import { DataRecord } from '../domain/dataRecord';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class GenericService {
 	private restUrl = 'http://localhost:8080/orx-web/api/rs/user/list';
 	
 	constructor(
-		private httpClient: HttpClient	
+		private httpClient: HttpClient
 	) { }
   
-	readList(): Observable<User[]> {
-		return this.httpClient.get<User[]>(this.restUrl);
-	}
-
+	readList<T extends DataRecord>(): Observable<T[]> {
+		return this.httpClient.get<T[]>(this.restUrl);
+	}  
 }
