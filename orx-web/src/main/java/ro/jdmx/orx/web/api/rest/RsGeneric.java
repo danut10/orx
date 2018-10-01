@@ -19,10 +19,17 @@ public class RsGeneric {
 	@GET 
 	@Path("/{entityCode}/list")
 	public List<User> readList(@PathParam("entityCode") String entityCode) {
-		List<User> recordList = new ArrayList<>();
-		User dan = new User().setEmailAddress("danut10@yahoo.com").setPassword("danut10");
-		recordList.add(dan);
+		List<User> recordList = getMockupUserList();
 		return recordList;
+	}
+	
+	
+	private List<User> getMockupUserList() {
+		List<User> userList = new ArrayList<>();
+		userList.add((User) new User().setEmailAddress("dan.maxim@cegeka.com").setName("Dan Maxim").setPassword("dan").setId(1));
+		userList.add((User) new User().setEmailAddress("andrei.pavel@cegeka.com").setName("Andrei Pavel").setPassword("andrei").setId(2));
+		userList.add((User) new User().setEmailAddress("alex.polatos@cegeka.com").setName("Alex Polatos").setPassword("alex").setId(3));
+		return userList;
 	}
 	
 }

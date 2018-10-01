@@ -1,12 +1,9 @@
-export class User {
+import { DataRecord } from './dataRecord';
+
+export class User extends DataRecord {
 	
-	id: number;
+	emailAddress: string;
 	name: string;
+	password: string;
 	
 }
-
-export const userList: User[] = [
-  { id: 1, name: 'Admin' },
-  { id: 2, name: 'Dan' },
-  { id: 3, name: 'Andrei' },
-];
