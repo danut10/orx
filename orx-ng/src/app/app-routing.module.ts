@@ -6,8 +6,7 @@ import { RoleListComponent } from './components/role-list/role-list.component';
 
 
 const routes: Routes = [
-	{ path: 'users/list', component: UserComponent } 
-	, { path: 'users/view/:id', component: UserComponent } 
+	{ path: 'users/:mode', component: UserComponent } 
 	, { path: 'role-list', component: RoleListComponent } 
 	// { outlet: 'primary1', path: 'user-list', component: UserListComponent }, 
 	//{ outlet: 'primary1', path: 'user-details/:id', component: UserDetailsComponent }

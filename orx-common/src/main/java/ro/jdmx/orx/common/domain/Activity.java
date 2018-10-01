@@ -1,4 +1,4 @@
-package ro.jdmx.orx.common;
+package ro.jdmx.orx.common.domain;
 
 public interface Activity {
 

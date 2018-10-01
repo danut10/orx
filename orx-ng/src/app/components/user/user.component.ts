@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+
 
 import { User } from '../../domain/user';
 import { DataRecord } from '../../domain/dataRecord';
@@ -15,22 +16,42 @@ export class UserComponent implements OnInit {
 
 	screenMode: string;
 	screenTitle: string;
-	currentRecord: User;
+	record: User;
 	recordList: User[];	
 	
 	constructor(
 		private userService: UserService,
 		private genericService: GenericService,
-		private route: ActivatedRoute		
-	) { }
+		private route: ActivatedRoute,
+		private router: Router		
+		) {
+			 
+		this.router.routeReuseStrategy.shouldReuseRoute = (() => false );
+	}
 
 	ngOnInit() {
-		this.genericService.readList<User>()
-			.subscribe(list => this.recordList = list);
-		
+		//let qryParams = this.route.snapshot.queryParams;
+		//let mode = qryParams["mode"];
+		//let id = qryParams["id"];
 		//const id = +this.route.snapshot.params["id"];
-		this.screenMode = 'list';
+		
+		const mode = this.route.snapshot.params["mode"];
+		
+		
 		this.screenTitle = 'Users';
+		this.screenMode = mode;
+		
+		if (mode == "list") {
+			this.genericService.readList<User>()
+				.subscribe(list => this.recordList = list);
+		}
+
+		if (mode == "view") {
+			const id = +this.route.snapshot.params["id"];
+			this.genericService.read<User>(id)
+				.subscribe(record => this.record = record);
+		}
+		
 	}
 
 }

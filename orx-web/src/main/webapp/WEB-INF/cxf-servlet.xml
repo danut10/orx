@@ -30,10 +30,6 @@
   	<jaxrs:server id="rsAll" address="/rs">
   		<jaxrs:serviceBeans>
 			<bean class="ro.jdmx.orx.web.api.rest.RsGeneric"/>
-			<!--  
-			<bean class="ro.kepler.kepres.ws.rest.RsAplicatie"/>
-			<bean class="ro.kepler.kepres.ws.rest.RsClient"/>
-			-->
   		</jaxrs:serviceBeans>
   		<jaxrs:providers>
 			<ref bean='jsonProvider' />

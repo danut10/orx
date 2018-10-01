@@ -8,13 +8,20 @@ import { DataRecord } from '../domain/dataRecord';
   providedIn: 'root'
 })
 export class GenericService {
-	private restUrl = 'http://localhost:8080/orx-web/api/rs/user/list';
+	private baseUrl = 'http://localhost:8080/orx-web/api/rs/user';
 	
 	constructor(
 		private httpClient: HttpClient
 	) { }
   
 	readList<T extends DataRecord>(): Observable<T[]> {
-		return this.httpClient.get<T[]>(this.restUrl);
+		const url = this.baseUrl;
+		return this.httpClient.get<T[]>(url);
 	}  
+	
+	read<T extends DataRecord>(id: number): Observable<T> {
+		const url = this.baseUrl + "/" + id;
+		return this.httpClient.get<T>(url);
+	}  
+	
 }
