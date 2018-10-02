@@ -1,4 +1,4 @@
-package ro.jdmx.orx.common.domain;
+package ro.jdmx.orx.common.dataRecords;
 
 import ro.jdmx.orx.common.core.DataRecordID;
 
