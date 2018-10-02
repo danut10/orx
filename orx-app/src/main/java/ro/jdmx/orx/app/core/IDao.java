@@ -17,5 +17,8 @@ public interface IDao<T extends IDataRecord>  {
 
 	void update(@Param("record") T record);
 	void create(@Param("record") T record);
+	
+	T read(@Param("id") Integer id);
+	void delete(@Param("id") Integer id);
 
 }

@@ -10,7 +10,7 @@
 	
 	<sql id="sqlSelect">
 		SELECT 
-			  u.id, u.name, u.emailAddress, u.password				
+			  u.id, u.name, u.email_address, u.password				
 			, u.role_id, r.name
 	</sql>
 	
@@ -24,10 +24,10 @@
 		<if test="qry != null and qry.filter != null">
 			WHERE 1 = 1
 			<if test="qry.filter.name != null" >
-				AND u.name LIKE #{qry.filter.name}
+				AND LOWER(u.name) LIKE LOWER(#{qry.filter.name})
 			</if>
 			<if test="qry.filter.name != null" >
-				AND u.emailAddress LIKE #{qry.filter.emailAddress}
+				AND u.email_address LIKE #{qry.filter.emailAddress}
 			</if>
 			<if test="qry.filter.role != null and qry.filter.role.id != null" >
 				AND a.role_id = #{qry.filter.role.id}
@@ -60,7 +60,7 @@
 	<!-- ================================= -->		
 		
 	<select id="readRecordCount" resultType="int">
-		SELECT COUNT(a.id)
+		SELECT COUNT(u.id)
 		<include refid="sqlFrom"></include>
 		<include refid="sqlWhere"></include>
 	</select>
@@ -75,7 +75,7 @@
 	<select id="read" resultMap="maps.User">
 		<include refid="sqlSelect"></include>
 		<include refid="sqlFrom"></include>
-		WHERE a.id = #{id}
+		WHERE u.id = #{id}
 	</select>
 	
 	<!-- ================================== -->

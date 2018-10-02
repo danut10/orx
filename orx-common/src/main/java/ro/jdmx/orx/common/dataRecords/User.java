@@ -1,8 +1,8 @@
 package ro.jdmx.orx.common.dataRecords;
 
-import ro.jdmx.orx.common.core.DataRecordID;
+import ro.jdmx.orx.common.core.DataRecord;
 
-public class User extends DataRecordID {
+public class User extends DataRecord {
 
 	private Role role;
 	private String name;

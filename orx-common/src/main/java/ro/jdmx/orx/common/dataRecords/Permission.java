@@ -1,8 +1,8 @@
 package ro.jdmx.orx.common.dataRecords;
 
-import ro.jdmx.orx.common.core.DataRecordID;
+import ro.jdmx.orx.common.core.DataRecord;
 
-public class Permission extends DataRecordID {
+public class Permission extends DataRecord {
 
 	private String entity;
 	private String code;

@@ -2,35 +2,25 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="ro.jdmx.orx.app.dao.DaoUser">
+<mapper namespace="ro.jdmx.orx.app.dao.DaoRole">
 
 	<!-- ================================== -->
 	<!-- ==  SQL 						 == -->
 	<!-- ================================== -->	
 	
 	<sql id="sqlSelect">
-		SELECT 
-			  u.id, u.name, u.emailAddress, u.password				
-			, u.role_id, r.name
+		SELECT r.id, r.name				
 	</sql>
 	
 	<sql id="sqlFrom">
-		FROM 
-			user u
-			LEFT JOIN role r ON u.role_id = r.id 
+		FROM role r
 	</sql>
 	
 	<sql id="sqlWhere">
 		<if test="qry != null and qry.filter != null">
 			WHERE 1 = 1
 			<if test="qry.filter.name != null" >
-				AND u.name LIKE #{qry.filter.name}
-			</if>
-			<if test="qry.filter.name != null" >
-				AND u.emailAddress LIKE #{qry.filter.emailAddress}
-			</if>
-			<if test="qry.filter.role != null and qry.filter.role.id != null" >
-				AND a.role_id = #{qry.filter.role.id}
+				AND r.name LIKE #{qry.filter.name}
 			</if>
 			<if test="qry.filter.tenant != null and qry.filter.tenant.id != null" >
 				AND r.tenant_id = #{qry.filter.tenant.id}
@@ -41,15 +31,12 @@
 	<sql id="sqlOrderBy">
 		<choose>
 			<when test="qry == null or qry.sorter == null or qry.sorter.sorterField == null or qry.sorter.sorterDirection == null">
-				ORDER BY u.name ASC
+				ORDER BY r.name ASC
 			</when>
 			<otherwise>
 				ORDER BY
 				<if test="qry.sorter.sorterField == 'name'">
-					LOWER(u.name) ${qry.sorter.sorterDirection}
-				</if>
-				<if test="qry.sorter.sorterField == 'emailAddress'">
-					LOWER(u.email_address) ${qry.sorter.sorterDirection}
+					LOWER(r.name) ${qry.sorter.sorterDirection}
 				</if>
 			</otherwise>
 		</choose>
@@ -60,22 +47,22 @@
 	<!-- ================================= -->		
 		
 	<select id="readRecordCount" resultType="int">
-		SELECT COUNT(a.id)
+		SELECT COUNT(r.id)
 		<include refid="sqlFrom"></include>
 		<include refid="sqlWhere"></include>
 	</select>
 		
-	<select id="readList" resultMap="maps.User">
+	<select id="readList" resultMap="maps.Role">
 		<include refid="sqlSelect"></include>
 		<include refid="sqlFrom"></include>
 		<include refid="sqlWhere"></include>
 		<include refid="sqlOrderBy"></include>
 	</select>
 			
-	<select id="read" resultMap="maps.User">
+	<select id="read" resultMap="maps.Role">
 		<include refid="sqlSelect"></include>
 		<include refid="sqlFrom"></include>
-		WHERE a.id = #{id}
+		WHERE r.id = #{id}
 	</select>
 	
 	<!-- ================================== -->
@@ -83,31 +70,25 @@
 	<!-- ================================== -->	
 	
 	<delete id="delete">
-		DELETE FROM user WHERE id = #{id}
+		DELETE FROM role WHERE id = #{id}
 	</delete>
 	
 	<update id="update">
 		UPDATE
-			user 
+			role 
 		SET 
-			  name = #{record.name}
-			, email_address = #{record.emailAddress}  
-			, role_id = #{record.role.id}
+			name = #{record.name}
 		WHERE 
 			id = #{record.id}
 	</update>
 	
 	<insert id="create" useGeneratedKeys="true" keyProperty="record.id">
-		INSERT INTO user (
+		INSERT INTO role (
 			  name
-			, email_address
-			, password
-			, role_id
+			, tenant_id
 		) VALUES (
 			  #{record.name}
-			, #{record.emailAddress}
-			, #{record.password}
-			, #{record.role.id}
+			, #{record.tenant.id}
 		)
 	</insert>
 	

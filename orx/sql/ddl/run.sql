@@ -14,4 +14,5 @@ USE `orx-dev-01`;
 --
 
 source tables/tables-admin.sql;
+source test-data/test-data-admin.sql;
 

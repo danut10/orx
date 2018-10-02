@@ -1,8 +1,8 @@
 package ro.jdmx.orx.common.dataRecords;
 
-import ro.jdmx.orx.common.core.DataRecordID;
+import ro.jdmx.orx.common.core.DataRecord;
 
-public class Role extends DataRecordID {
+public class Role extends DataRecord {
 
 	private Tenant tenant;
 	private String name;

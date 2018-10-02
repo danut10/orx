@@ -28,7 +28,7 @@
 			<td>{{record.name}}</td>
 			<td>{{record.emailAddress}}</td>
 			<td>
-				<a [routerLink]="['/users/view', record.id]">GO</a>
+				<a [routerLink]="['/users/view', { id: record.id}]">GO</a>
 			</td>
 		</tr>
 	</table>
@@ -40,16 +40,13 @@
 			<td>ID</td>
 			<td><input [(ngModel)]="record.id" placeholder="ID"></td>
 		</tr>
-		
 		<tr>
 			<td>Name</td>
 			<td><input [(ngModel)]="record.name" placeholder="Name"></td>
 		</tr>
-
 		<tr>
 			<td>Email</td>
 			<td><input [(ngModel)]="record.emailAddress" placeholder="Email address"></td>
 		</tr>
-		
 	</table>
 </div>
