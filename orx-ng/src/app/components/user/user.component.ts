@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
-
 import { User } from '../../domain/user';
 import { DataRecord } from '../../domain/dataRecord';
 import { UserService } from '../../services/user.service';
