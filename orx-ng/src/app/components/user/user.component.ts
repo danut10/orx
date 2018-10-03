@@ -5,7 +5,7 @@ import { User } from '../../domain/user';
 import { DataRecord } from '../../domain/dataRecord';
 import { UserService } from '../../services/user.service';
 import { GenericService } from '../../services/generic.service';
-import { UserFilter } from '../../domain/userFilter';
+import { UserFilter, Pager, Sorter } from '../../domain/userFilter';
 
 @Component({
   selector: 'app-user',
@@ -44,10 +44,20 @@ export class UserComponent implements OnInit {
 		if (mode == "list") {
 			//this.genericService.readList<User>("user")
 			//	.subscribe(list => this.recordList = list);
-			const filter: UserFilter = new UserFilter();
-			filter.name = "Dan Maxim";
 			
-			this.genericService.listFilter<User>("user", filter)
+			const filter: UserFilter = new UserFilter();
+			//filter.name = "Dan Maxim";
+			
+			const pager: Pager = new Pager();
+			pager.pageSize = 10;
+			pager.pageNo = 3;
+			
+			const sorter: Sorter = new Sorter();
+			sorter.field = "name";
+			sorter.desc = false;
+			
+			
+			this.genericService.browse<User>("user", filter, sorter, pager)
 				.subscribe(list => this.recordList = list);
 			
 		}

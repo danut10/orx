@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.MatrixParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -15,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
@@ -29,6 +31,7 @@ import ro.jdmx.orx.common.core.dataObject.IDataFilter;
 import ro.jdmx.orx.common.core.dataObject.IDataRecord;
 import ro.jdmx.orx.common.core.dataQuery.DataQuery;
 import ro.jdmx.orx.common.core.dataQuery.Pager;
+import ro.jdmx.orx.common.core.dataQuery.Sorter;
 
 @Consumes(MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
 @Produces(MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
@@ -45,38 +48,16 @@ public class RsGeneric {
 	@Autowired IDaoFactory daoFactory;
 	
 	/*
-	 * REST Methods
+	 * REST Methods - Query
 	 */
 	
-	@POST 
-	@Path("/{entityCode}/filter")
-	public <F extends IDataFilter, R extends IDataRecord> List<R> readFilter(
-		@PathParam("entityCode") String entityCode, 
-		@PathParam("pageNo") Integer pageNo,
-		String json) {
-		
-		F filter = getFilter(entityCode, json);
-		IDao<R> dao = daoFactory.getInstance(entityCode);
-		List<R> recordList = dao.readList(new DataQuery(filter));
-		return recordList;
-	}	
-
-	@POST 
-	@Path("/{entityCode}/filter/{pageNo}")
-	public <F extends IDataFilter, R extends IDataRecord> List<R> readFilterPager(
-		@PathParam("entityCode") String entityCode, 
-		@PathParam("pageNo") Integer pageNo,
-		String json) {
-		
-		F filter = getFilter(entityCode, json);
-		DataQuery qry = new DataQuery().setFilter(filter);
-		IDao<R> dao = daoFactory.getInstance(entityCode);
-		int recordCount = dao.readRecordCount(qry);
-		Pager pager = new Pager().setPageNo(pageNo).setRecordCount(recordCount).build();
-		qry.setPager(pager);
-		List<R> recordList = dao.readList(qry);
-		return recordList;
-	}	
+	@GET 
+	@Path("/{entityCode}/{id}")
+	public <T extends IDataRecord> T read(@PathParam("entityCode") String entityCode, @PathParam("id") Integer id) {
+		IDao<T> dao = daoFactory.getInstance(entityCode);
+		T record = dao.read(id);
+		return record;
+	}		
 	
 	@GET 
 	@Path("/{entityCode}")
@@ -86,13 +67,61 @@ public class RsGeneric {
 		return recordList;
 	}
 	
-	@GET 
-	@Path("/{entityCode}/{id}")
-	public <T extends IDataRecord> T read(@PathParam("entityCode") String entityCode, @PathParam("id") Integer id) {
-		IDao<T> dao = daoFactory.getInstance(entityCode);
-		T record = dao.read(id);
-		return record;
+	@POST 
+	@Path("/{entityCode}/filter")
+	public <F extends IDataFilter, R extends IDataRecord> List<R> readFilter(
+		@PathParam("entityCode") String entityCode, 
+		String json) {
+		
+		F filter = getFilter(entityCode, json);
+		IDao<R> dao = daoFactory.getInstance(entityCode);
+		List<R> recordList = dao.readList(new DataQuery(filter));
+		return recordList;
 	}	
+
+	@POST 
+	@Path("/{entityCode}/browse")
+	public <F extends IDataFilter, R extends IDataRecord> List<R> browse(
+		@PathParam("entityCode") String entityCode, 
+		@MatrixParam("pageSize") Integer pageSize,
+		@MatrixParam("pageNo") Integer pageNo,
+		@MatrixParam("sorterField") String sorterField,
+		@MatrixParam("sorterDesc") Boolean sorterDesc,
+		String json) {
+		
+		// get record count
+		F filter = getFilter(entityCode, json);
+		DataQuery qry = new DataQuery().setFilter(filter);
+		IDao<R> dao = daoFactory.getInstance(entityCode);
+		int recordCount = dao.readRecordCount(qry);
+		
+		// prepare query
+		Pager pager = new Pager()
+			.setRecordCount(recordCount)
+			.setPageSize(pageSize)
+			.setPageNo(pageNo)
+			.build();
+		qry.setPager(pager);
+		
+		Sorter sorter = new Sorter().setSorterField(sorterField);
+		if (sorterDesc != null) { 
+			sorter.setSorterDirection("DESC"); 
+		} else {
+			sorter.setSorterDirection("ASC");
+		}
+		qry.setSorter(sorter);
+		
+		// quey database
+		RowBounds rb = new RowBounds(pager.getRecordNoMin(), pager.getPageSize());
+		List<R> recordList = dao.readList(qry, rb);
+		
+		// return
+		return recordList;
+	}	
+	
+	/*
+	 * REST Methods - Command
+	 */	
 	
 	@POST 
 	@Path("/{entityCode}") 	

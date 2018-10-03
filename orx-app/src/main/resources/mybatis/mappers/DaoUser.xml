@@ -26,7 +26,7 @@
 			<if test="qry.filter.name != null" >
 				AND LOWER(u.name) LIKE LOWER(#{qry.filter.name})
 			</if>
-			<if test="qry.filter.name != null" >
+			<if test="qry.filter.emailAddress != null" >
 				AND u.email_address LIKE #{qry.filter.emailAddress}
 			</if>
 			<if test="qry.filter.role != null and qry.filter.role.id != null" >
