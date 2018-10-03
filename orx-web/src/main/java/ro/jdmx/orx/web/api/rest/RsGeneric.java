@@ -68,18 +68,6 @@ public class RsGeneric {
 	}
 	
 	@POST 
-	@Path("/{entityCode}/filter")
-	public <F extends IDataFilter, R extends IDataRecord> List<R> readFilter(
-		@PathParam("entityCode") String entityCode, 
-		String json) {
-		
-		F filter = getFilter(entityCode, json);
-		IDao<R> dao = daoFactory.getInstance(entityCode);
-		List<R> recordList = dao.readList(new DataQuery(filter));
-		return recordList;
-	}	
-
-	@POST 
 	@Path("/{entityCode}/browse")
 	public <F extends IDataFilter, R extends IDataRecord> List<R> browse(
 		@PathParam("entityCode") String entityCode, 
@@ -89,34 +77,45 @@ public class RsGeneric {
 		@MatrixParam("sorterDesc") Boolean sorterDesc,
 		String json) {
 		
-		// get record count
+		IDao<R> dao = daoFactory.getInstance(entityCode);
 		F filter = getFilter(entityCode, json);
 		DataQuery qry = new DataQuery().setFilter(filter);
-		IDao<R> dao = daoFactory.getInstance(entityCode);
-		int recordCount = dao.readRecordCount(qry);
 		
-		// prepare query
-		Pager pager = new Pager()
-			.setRecordCount(recordCount)
-			.setPageSize(pageSize)
-			.setPageNo(pageNo)
-			.build();
-		qry.setPager(pager);
-		
-		Sorter sorter = new Sorter().setSorterField(sorterField);
-		if (sorterDesc != null) { 
-			sorter.setSorterDirection("DESC"); 
-		} else {
-			sorter.setSorterDirection("ASC");
+		// prepare sorter
+		if (sorterField != null) {
+			Sorter sorter = new Sorter().setSorterField(sorterField);
+			if (sorterDesc != null) { 
+				sorter.setSorterDirection("DESC"); 
+			} else {
+				sorter.setSorterDirection("ASC");
+			}
+			qry.setSorter(sorter);
 		}
-		qry.setSorter(sorter);
+		
+		// prepare pager
+		Pager pager = null;
+		if (pageNo != null) {
+			int recordCount = dao.readRecordCount(qry);
+			pager = new Pager()
+				.setRecordCount(recordCount)
+				.setPageNo(pageNo);
+			if (pageSize == null) { pageSize = 10; }
+			pager.build();
+			qry.setPager(pager);			
+		}
 		
 		// quey database
-		RowBounds rb = new RowBounds(pager.getRecordNoMin(), pager.getPageSize());
-		List<R> recordList = dao.readList(qry, rb);
+		List<R> recordList = null;		
+		if (qry.getPager() != null) {
+			RowBounds rb = new RowBounds(pager.getRecordNoMin(), pager.getPageSize());
+			recordList = dao.readList(qry, rb);
+		} else {
+			recordList = dao.readList(qry);
+		}
 		
 		// return
 		return recordList;
+		
 	}	
 	
 	/*

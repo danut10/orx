@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { User } from '../../domain/user';
-import { DataRecord } from '../../domain/dataRecord';
-import { UserService } from '../../services/user.service';
+import { Pager, Sorter } from '../../domain/core';
 import { GenericService } from '../../services/generic.service';
-import { UserFilter, Pager, Sorter } from '../../domain/userFilter';
+import { User, UserFilter } from '../../domain/user';
 
 @Component({
   selector: 'app-user',
@@ -16,48 +14,34 @@ export class UserComponent implements OnInit {
 
 	screenMode: string;
 	screenTitle: string;
+	filter: UserFilter = new UserFilter;
+	pager: Pager = new Pager();
+	sorter = new Sorter();
 	record: User = new User;
 	recordList: User[];	
 	
+	
 	constructor(
-		private userService: UserService,
 		private genericService: GenericService,
 		private route: ActivatedRoute,
 		private router: Router		
 		) {
-			 
 		this.router.routeReuseStrategy.shouldReuseRoute = (() => false );
 	}
 
 	ngOnInit() {
-		//let qryParams = this.route.snapshot.queryParams;
-		//let mode = qryParams["mode"];
-		//let id = qryParams["id"];
-		//const id = +this.route.snapshot.params["id"];
-		
 		const mode = this.route.snapshot.params["mode"];
-		
-		
+
 		this.screenTitle = "Users";
 		this.screenMode = mode;
 		
 		if (mode == "list") {
-			//this.genericService.readList<User>("user")
-			//	.subscribe(list => this.recordList = list);
+			//this.filter.name = "Dan Maxim";
+			this.pager.pageNo = 1;
+			this.sorter.field = "name";
+			//this.sorter.desc = true;
 			
-			const filter: UserFilter = new UserFilter();
-			//filter.name = "Dan Maxim";
-			
-			const pager: Pager = new Pager();
-			pager.pageSize = 10;
-			pager.pageNo = 3;
-			
-			const sorter: Sorter = new Sorter();
-			sorter.field = "name";
-			sorter.desc = false;
-			
-			
-			this.genericService.browse<User>("user", filter, sorter, pager)
+			this.genericService.browse<User>("user", this.filter, this.sorter, this.pager)
 				.subscribe(list => this.recordList = list);
 			
 		}

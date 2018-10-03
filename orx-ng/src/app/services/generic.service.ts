@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserFilter, Pager } from '../domain/userFilter';
 
-import { DataRecord } from '../domain/dataRecord';
+import { DataRecord, Pager, Sorter } from '../domain/core';
 
 @Injectable({
   providedIn: 'root'
@@ -27,21 +26,13 @@ export class GenericService {
 		return this.httpClient.get<T[]>(url);
 	}  
 
-	readFilter<T extends DataRecord>(entityCode: string, filter: UserFilter): Observable<T[]> {
-		const url = this.baseUrl + "/" + entityCode + "/filter";
-		return this.httpClient.post<T[]>(url, filter);
-	}  
-	
-	browse<T extends DataRecord>(entityCode: string, filter: UserFilter, sorter: Sorter, pager: Pager): Observable<T[]> {
-		
+	browse<T extends DataRecord>(entityCode: string, filter?, sorter?: Sorter, pager?: Pager): Observable<T[]> {
+		if (!filter) { filter = {} };
 		let url = `${this.baseUrl}/${entityCode}/browse`;
 		if (sorter && sorter.field) { url += ";sorterField=" + sorter.field; }
-		if (sorter && sorter.desc) { url += ";sorterDesc=" + true; }
+		if (sorter && sorter.desc) { url += ";sorterDesc"; }
 		if (pager && pager.pageSize) { url += ";pageSize=" + pager.pageSize; }
 		if (pager && pager.pageNo) { url += ";pageNo=" + pager.pageNo; }
-		
-		// const url = `${this.baseUrl}/${entityCode}/browse;pageSize=${pager.pageSize};pageNo=${pager.pageNo};sorterField=${sorter.field};sorterDesc=${sorter.desc}` 
-		// const url = this.baseUrl + "/" + entityCode + "/filter/" + pager.pageSize + "/" + pager.pageNo + ";s=vasile" ;
 		return this.httpClient.post<T[]>(url, filter);
 	}  
 	

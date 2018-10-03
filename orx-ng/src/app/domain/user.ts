@@ -1,9 +1,13 @@
-import { DataRecord } from './dataRecord';
+import { DataRecord } from './core';
 
-export class User extends DataRecord {
-	
-	emailAddress: string;
+export class User implements DataRecord {
+	id: number;
 	name: string;
+	emailAddress: string;
 	password: string;
-	
+}
+
+export class UserFilter {
+	name: string;
+	emailAddress: string;
 }

@@ -10,8 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 
-import { RoleListComponent } from './components/role-list/role-list.component';
 import { UserComponent } from './components/user/user.component';
+import { RoleComponent } from './components/role/role.component';
 
 @NgModule({
   
@@ -20,7 +20,7 @@ import { UserComponent } from './components/user/user.component';
     HeaderComponent,
     FooterComponent,
     ContentComponent,
-    RoleListComponent,
+    RoleComponent,
     UserComponent
   ],
   
