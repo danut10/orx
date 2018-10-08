@@ -135,8 +135,8 @@ public class RsGeneric {
 	}	
 	
 	@PUT 
-	@Path("/{entityCode}/{id}") 
-	public <T extends IDataRecord> void update(@PathParam("entityCode") String entityCode, @PathParam("id") Integer id, String json) {
+	@Path("/{entityCode}") 
+	public <T extends IDataRecord> void update(@PathParam("entityCode") String entityCode, String json) {
 		T record = getRecord(entityCode, json);
 		IDao<T> dao = daoFactory.getInstance(entityCode);
 		dao.update(record); 

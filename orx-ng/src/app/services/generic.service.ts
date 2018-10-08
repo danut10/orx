@@ -38,5 +38,18 @@ export class GenericService {
 	
 	// Methods - Command
 	
+	create<T extends DataRecord>(entityCode: string, record: T): Observable<number> {
+		const url = this.baseUrl + "/" + entityCode;
+		return this.httpClient.post<number>(url, record);
+	}  	
+		
+	update<T extends DataRecord>(entityCode: string, record: T): Observable<Response> {
+		const url = this.baseUrl + "/" + entityCode;
+		return this.httpClient.put<Response>(url, record);
+	}  	
 	
+	delete(entityCode: string, id: number): Observable<any> {
+		const url = this.baseUrl + "/" + entityCode + "/" + id;
+		return this.httpClient.delete(url);
+	}  	
 }

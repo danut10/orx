@@ -6,11 +6,12 @@
 
 <!-- Toolbar -->
 <div>
-	<button type="button">Add</button>
-	<button type="button">Edit</button>
-	<button type="button">Delete</button>
-	<button type="button">Save</button>
-	<button type="button">Cancel</button>
+	<button type="button" routerLink="../list">List</button>
+	<button type="button" routerLink="../add">Add</button>
+	<button type="button" [routerLink]="['../edit', {id: record.id}]">Edit</button>
+	<button type="button" (click)="delete(record.id)">Delete</button>
+	<button type="button" (click)="save()" >Save</button>
+	<button type="button" (click)="cancel()">Cancel</button>
 </div>
 
 <div *ngIf="(screenMode == 'list')">
@@ -28,25 +29,25 @@
 			<td>{{record.name}}</td>
 			<td>{{record.emailAddress}}</td>
 			<td>
-				<a [routerLink]="['/users/view', { id: record.id}]">GO</a>
+				<a [routerLink]="['/users/view', {id: record.id}]">View</a>
 			</td>
 		</tr>
 	</table>
 </div>
 
-<div *ngIf="screenMode == 'view' || screenMode == 'edit'">
+<div *ngIf="screenMode == 'view' || screenMode == 'edit' || screenMode == 'add'">
 	<table>
 		<tr>
 			<td>ID</td>
-			<td><input [(ngModel)]="record.id" placeholder="ID"></td>
+			<td><input [disabled]="screenMode != 'edit'" [(ngModel)]="record.id"></td>
 		</tr>
 		<tr>
 			<td>Name</td>
-			<td><input [(ngModel)]="record.name" placeholder="Name"></td>
+			<td><input [disabled]="screenMode != 'edit'" [(ngModel)]="record.name"></td>
 		</tr>
 		<tr>
 			<td>Email</td>
-			<td><input [(ngModel)]="record.emailAddress" placeholder="Email address"></td>
+			<td><input [disabled]="screenMode != 'edit'" [(ngModel)]="record.emailAddress"></td>
 		</tr>
 	</table>
 </div>
