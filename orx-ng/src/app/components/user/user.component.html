@@ -19,16 +19,17 @@
 
 
 <div *ngIf="screenMode.isList()">
-	<table class="tblGrid" style="width: 600px;">
+	<table datatable class="row-border hover" [dtOptions]="dtOptions">
+	<thead>
 		<tr>
 			<th>ID</th>
 			<th>Name</th>
 			<th>Email</th>
 			<th></th>
 		</tr>
-		
-		
-		<tr *ngFor="let record of recordList" (click)="select(record)">
+	</thead>
+	<tbody>
+		<tr *ngFor="let record of recordList">
 			<td>{{record.id}}</td>
 			<td>{{record.name}}</td>
 			<td>{{record.emailAddress}}</td>
@@ -36,6 +37,7 @@
 				<a [routerLink]="['/users/view', {id: record.id}]">View</a>
 			</td>
 		</tr>
+	</tbody>	
 	</table>
 </div>
 

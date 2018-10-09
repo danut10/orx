@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
 	sorter = new Sorter();
 	record: User = new User;
 	recordList: User[];	
+	dtOptions: DataTables.Settings = {};	
 	
 	
 	constructor(
@@ -38,6 +39,7 @@ export class UserComponent implements OnInit {
 		if (this.screenMode.isList()) { 
 			//this.filter.name = "Dan Maxim";
 			this.pager.pageNo = 1;
+			this.pager.recordCount = 14;
 			this.sorter.field = "name";
 			//this.sorter.desc = true;
 			this.genericService.browse<User>("user", this.filter, this.sorter, this.pager)
@@ -48,6 +50,13 @@ export class UserComponent implements OnInit {
 		} else if (this.screenMode.isAdd) { 
 			this.record = new User(); 
 		}
+		
+		this.dtOptions = {
+			pagingType: 'full_numbers',
+			pageLength: 10,
+			//serverSide: true,
+			processing: true,
+		};		
 	}
 	
 	
