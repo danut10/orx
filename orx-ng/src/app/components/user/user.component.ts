@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { Pager, Sorter } from '../../domain/core';
+import { Pager, Sorter, ScreenMode } from '../../domain/core';
 import { GenericService } from '../../services/generic.service';
 import { User, UserFilter } from '../../domain/user';
 
@@ -12,7 +12,7 @@ import { User, UserFilter } from '../../domain/user';
 })
 export class UserComponent implements OnInit {
 
-	screenMode: string;
+	screenMode: ScreenMode;
 	screenTitle: string = "Users";
 	entityCode: string = "user";
 	filter: UserFilter = new UserFilter;
@@ -33,22 +33,25 @@ export class UserComponent implements OnInit {
 	ngOnInit() {
 		const mode = this.route.snapshot.params["mode"];
 		const id = +this.route.snapshot.params["id"];
-		this.screenMode = mode;
+		this.screenMode = new ScreenMode(mode);
 		
-		if (mode == "list") { 
+		if (this.screenMode.isList()) { 
 			//this.filter.name = "Dan Maxim";
 			this.pager.pageNo = 1;
 			this.sorter.field = "name";
 			//this.sorter.desc = true;
 			this.genericService.browse<User>("user", this.filter, this.sorter, this.pager)
 				.subscribe(list => this.recordList = list);
-		} else if (mode == "view" || mode == "edit") { 
+		} else if (this.screenMode.isRecord()) { 
 			this.genericService.read<User>("user", id)
 				.subscribe(record => this.record = record);		
-		} else if (mode == "add") { 
+		} else if (this.screenMode.isAdd) { 
 			this.record = new User(); 
 		}
 	}
+	
+	
+	
 	
 	/*
 	 * Methods - action
@@ -59,21 +62,25 @@ export class UserComponent implements OnInit {
 			.subscribe(() => this.router.navigate(["/users/list"]));
 	}
 		
-	private save() {
-		if (this.screenMode == "edit") {
+	private save(doEdit: boolean) {
+		let url: string = (doEdit ? "/users/edit" : "users/view"); 
+		if (this.screenMode.isEdit()) {
 			let id = this.record.id;
 			this.genericService.update("user", this.record)
-				.subscribe(() => this.router.navigate(["/users/view", { id:id }]));
-		}
-		if (this.screenMode == "add") {
+				.subscribe(() => this.router.navigate([url, { id:id }]));
+		} else if (this.screenMode.isAdd) {
 			this.genericService.create("user", this.record)
-				.subscribe((id) => this.router.navigate(["/users/view", { id:id }]));
+				.subscribe((id) => this.router.navigate([url, { id:id }]));
 		}
 	}
 
 	private cancel() {
-		let id = this.record.id;
-		this.router.navigate(["/users/view", { id:id }]);		
+		if (this.screenMode.isEdit()) {
+			let id = this.record.id;
+			this.router.navigate(["/users/view", { id:id }]);		
+		} else if (this.screenMode.isAdd()) {
+			this.router.navigate(["/users/list"]);		
+		}		
 	}	
 	
 }
