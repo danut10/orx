@@ -1,25 +1,22 @@
-<div>
-	<header>
-		{{screenTitle}} - {{screenMode.name}}
-	</header>
+<div class="row">
+	<div class="col-sm">
+		{{screenTitle}}
+		<br>
+		{{screenMode.name}}
+	</div>
+	<div class="col-sm">
+		<button type="button" *ngIf="screenMode.isEditable()" class="btn btn-outline-primary btn-circle float-right" (click)="cancel()"><i class="fa fa-ban"></i></button>
+		<button type="button" *ngIf="screenMode.isEditable()" class="btn btn-outline-primary btn-circle float-right" (click)="save(true)"><i class="fa fa-save"></i></button>
+		<button type="button" *ngIf="screenMode.isEditable()" class="btn btn-outline-primary btn-circle float-right" (click)="save()"><i class="fa fa-check"></i></button>
+		<button type="button" *ngIf="screenMode.isView()" class="btn btn-outline-primary btn-circle float-right" (click)="delete(record.id)"><i class="fa fa-trash"></i></button>
+		<button type="button" *ngIf="screenMode.isView()" class="btn btn-outline-primary btn-circle float-right" [routerLink]="['../edit', {id: record.id}]"><i class="fa fa-edit"></i></button>
+		<button type="button" *ngIf="screenMode.isList()" class="btn btn-outline-primary btn-circle float-right" routerLink="../add"><i class="fa fa-plus"></i></button>
+		<button type="button" *ngIf="screenMode.isView()" class="btn btn-outline-primary btn-circle float-right" routerLink="../list"><i class="fa fa-list"></i></button>	
+		<!-- 
+		-->
+	</div>
 </div>
 
-<!-- Toolbar -->
-<div>
-	
-	<button type="button" *ngIf="screenMode.isView()" class="btn btn-outline-primary btn-circle" routerLink="../list"><i class="fa fa-list"></i></button>	
-	&nbsp;
-	<button type="button" *ngIf="screenMode.isView()" class="btn btn-outline-primary" routerLink="../list"><i class="fa fa-list"></i></button>	
-	&nbsp;
-
-	<button type="button" *ngIf="screenMode.isView()" routerLink="../list">List</button>
-	<button type="button" *ngIf="screenMode.isList()" routerLink="../add">Add</button>
-	<button type="button" *ngIf="screenMode.isView()"[routerLink]="['../edit', {id: record.id}]">Edit</button>
-	<button type="button" *ngIf="screenMode.isView()" (click)="delete(record.id)">Delete</button>
-	<button type="button" *ngIf="screenMode.isEditable()" (click)="save()" >Ok</button>
-	<button type="button" *ngIf="screenMode.isEditable()" (click)="save(true)" >Save</button>
-	<button type="button" *ngIf="screenMode.isEditable()" (click)="cancel()">Cancel</button>
-</div>
 
 <div *ngIf="screenMode.isList()">
 	<table class="tblGrid" style="width: 600px;">
