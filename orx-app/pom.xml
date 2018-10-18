@@ -18,34 +18,14 @@
 
 	<dependencies>
 
-		<!-- orx-common -->
+		<!-- spring-boot-starter-mybatis -->
 		<dependency>
-			<groupId>ro.jdmx.orx</groupId>
-			<artifactId>orx-common</artifactId>
-			<version>0.1</version>
-		</dependency>	
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.2</version>
+		</dependency>		
 		
-		<!-- spring-context -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring-framework.version}</version>
-		</dependency>
-
-		<!-- spring-jdbc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring-framework.version}</version>
-		</dependency>
-
-		<!-- spring-tx -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring-framework.version}</version>
-		</dependency>
-
+		
 		<!-- commons-dbcp -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -57,24 +37,50 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.46</version>
 		</dependency>	
+				
+		<!-- orx-common -->
+		<dependency>
+			<groupId>ro.jdmx.orx</groupId>
+			<artifactId>orx-common</artifactId>
+			<version>0.1</version>
+		</dependency>	
+		
+		<!-- spring-old-way -->
+		<!--  
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
 
-		<!-- mybatis -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.3.0</version>
 		</dependency>
 
-		<!-- mybatis-spring -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-
+		-->
+		
 		<!-- apache-poi -->
+		<!--  
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi</artifactId>
@@ -90,32 +96,25 @@
 			<artifactId>ooxml-schemas</artifactId>
 			<version>1.3</version>
 		</dependency>
+		-->
 
 		<!-- docx4j -->
+		<!--  
 		<dependency>
 			<groupId>org.docx4j</groupId>
 			<artifactId>docx4j</artifactId>
 			<version>3.2.2</version>
 		</dependency>
+		-->
 		
-		<!-- javax-mail -->
-		<dependency>
-    		<groupId>javax.mail</groupId>
-    		<artifactId>mail</artifactId>
-    		<version>1.4.7</version>
-		</dependency>
-		<dependency>
-    		<groupId>javax.activation</groupId>
-    		<artifactId>activation</artifactId>
-    		<version>1.1.1</version>
-		</dependency>
-
 		<!-- http-client -->
+		<!--  
 		<dependency>
     		<groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId>
     		<version>4.5.2</version>
 		</dependency>
+		-->
 		
 		
     </dependencies>
