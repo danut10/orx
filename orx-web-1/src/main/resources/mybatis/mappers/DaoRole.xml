@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ro.jdmx.orx.app.dao.DaoRole">
+
+	<!-- ================================== -->
+	<!-- ==  SQL 						 == -->
+	<!-- ================================== -->	
+	
+	<sql id="sqlSelect">
+		SELECT r.id, r.name				
+	</sql>
+	
+	<sql id="sqlFrom">
+		FROM role r
+	</sql>
+	
+	<sql id="sqlWhere">
+		<if test="qry != null and qry.filter != null">
+			WHERE 1 = 1
+			<if test="qry.filter.name != null" >
+				AND r.name LIKE #{qry.filter.name}
+			</if>
+			<if test="qry.filter.tenant != null and qry.filter.tenant.id != null" >
+				AND r.tenant_id = #{qry.filter.tenant.id}
+			</if>
+		</if>
+	</sql>
+	
+	<sql id="sqlOrderBy">
+		<choose>
+			<when test="qry == null or qry.sorter == null or qry.sorter.sorterField == null or qry.sorter.sorterDirection == null">
+				ORDER BY r.name ASC
+			</when>
+			<otherwise>
+				ORDER BY
+				<if test="qry.sorter.sorterField == 'name'">
+					LOWER(r.name) ${qry.sorter.sorterDirection}
+				</if>
+			</otherwise>
+		</choose>
+	</sql>	
+
+	<!-- ================================= -->
+	<!-- ==  READ  					 	== -->
+	<!-- ================================= -->		
+		
+	<select id="readRecordCount" resultType="int">
+		SELECT COUNT(r.id)
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+	</select>
+		
+	<select id="readList" resultMap="maps.Role">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		<include refid="sqlWhere"></include>
+		<include refid="sqlOrderBy"></include>
+	</select>
+			
+	<select id="read" resultMap="maps.Role">
+		<include refid="sqlSelect"></include>
+		<include refid="sqlFrom"></include>
+		WHERE r.id = #{id}
+	</select>
+	
+	<!-- ================================== -->
+	<!-- ==  CREATE / UPDATE / DELETE	 == -->
+	<!-- ================================== -->	
+	
+	<delete id="delete">
+		DELETE FROM role WHERE id = #{id}
+	</delete>
+	
+	<update id="update">
+		UPDATE
+			role 
+		SET 
+			name = #{record.name}
+		WHERE 
+			id = #{record.id}
+	</update>
+	
+	<insert id="create" useGeneratedKeys="true" keyProperty="record.id">
+		INSERT INTO role (
+			  name
+			, tenant_id
+		) VALUES (
+			  #{record.name}
+			, #{record.tenant.id}
+		)
+	</insert>
+	
+</mapper>
